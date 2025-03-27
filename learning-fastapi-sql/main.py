@@ -6,9 +6,11 @@ from app.clientes.consultar_pedido import consultarPedidos
 from app.clientes.consultar_pedido_especifico import consultarPedidoEspecifico
 from app import app 
 
+
 @app.get("/api/v1/ok")
 def read_root():
     return {"status": "ok"}
+
 
 @app.post("/api/v1/clientes")
 def post_clientes(cliente: Clientes):
