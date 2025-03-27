@@ -3,6 +3,7 @@ from app.clientes.registrar import registrar as registrarNuevoCliente
 from app.productos.registrar import registrar as registrarNuevoProducto
 from app.pedidos.registrar import PedidoARegistrar, registrar as registrarNuevoPedido
 from app.clientes.consultar_pedido import consultarPedidos
+from app.clientes.consultar_pedido_especifico import consultarPedidoEspecifico
 from app import app 
 
 
@@ -27,3 +28,8 @@ def post_pedidos(pedido: PedidoARegistrar):
 def get_pedidos(cliente_id: str):
     pedidos = consultarPedidos(cliente_id)
     return {"pedidos": pedidos}
+
+@app.get("/api/v1/clientes/{cliente_id}/pedidos/{pedido_id}/estado")
+def get_pedidos_especifico(cliente_id: str, pedido_id: str):
+    pedido = consultarPedidoEspecifico(cliente_id, pedido_id)
+    return {"id": pedido.id, "pedidos": pedido.estado}
